@@ -43,6 +43,8 @@ public class User implements UserDetails , Principal {
     @LastModifiedBy
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
+    private boolean accountLocked ;
+    private boolean enabled ;
 
 
 
@@ -68,7 +70,7 @@ public class User implements UserDetails , Principal {
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return !this.accountLocked;
     }
 
     @Override
@@ -78,7 +80,7 @@ public class User implements UserDetails , Principal {
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return this.enabled;
     }
 
     @Override
