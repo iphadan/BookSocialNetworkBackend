@@ -3,7 +3,7 @@ spring:
     active: dev
   servlet:
     multipart:
-      max-file-size: 50M
+      max-file-size: 50MB
 springdoc.default-media-type: application/json
 server:
   servlet:
