@@ -22,16 +22,18 @@ private final AuthenticationProvider authenticationProvider;
 private final JwtAuthFilter jwtAuthFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-     return   http.cors(Customizer.withDefaults())
+        http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req->req.requestMatchers(
-                        "","",""
-                ).permitAll()
-                                .anyRequest().authenticated()
-                ).sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        "/auth/**","/keyclock/**","/swagger/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+             .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
+        return http.build();
 
     }
 

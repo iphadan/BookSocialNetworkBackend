@@ -18,9 +18,9 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
- @Value("${application.security.jwt.secretKey}")
+    @Value("${spring.application.security.jwt.secretKey}")
     String secretKet;
-  @Value("${application.security.jwt.expiration}")
+  @Value("${spring.application.security.jwt.expiration}")
     Long jwtExpiration;
     public String extractUserName(String token) {
         return extractClaims(token, Claims::getSubject);

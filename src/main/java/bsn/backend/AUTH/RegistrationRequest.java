@@ -1,18 +1,11 @@
 package bsn.backend.AUTH;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 @Setter
 @Getter
 @RequiredArgsConstructor
-@Builder
 public class RegistrationRequest {
     @NotEmpty(message = "Firstname is Mandatory")
     @NotBlank(message = "Firstname can not be Blank")
@@ -26,7 +19,6 @@ public class RegistrationRequest {
     private String email;
     @NotEmpty(message = "Password is Mandatory")
     @NotBlank(message = "Password can not be Blank")
-    @Size(max = 8 ,message = "Password can not be less than 8 Characters")
     private String password;
     @NotEmpty(message = "Firstname is Mandatory")
     @NotBlank(message = "Firstname can not be Blank")

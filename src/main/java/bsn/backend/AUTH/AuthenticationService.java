@@ -7,7 +7,9 @@ import bsn.backend.REPOSITORIES.TokenRepository;
 import bsn.backend.REPOSITORIES.UserRepository;
 import bsn.backend.USER.Token;
 import bsn.backend.USER.User;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +20,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class AuthenticationService {
+
 private final UserRepository userRepository;
 private final RoleRepository roleRepository;
 private final PasswordEncoder passwordEncoder;
 private final TokenRepository tokenRepository;
 private final EmailService emailService;
-    public void register(RegistrationRequest registrationRequest) {
+@Value("${spring.application.mailing.frontend.activationUrl}")
+private String confirmationUrl;
+    public void register(RegistrationRequest registrationRequest) throws MessagingException {
         var userRole = roleRepository.findRoleByName("USER").orElseThrow(()-> new IllegalStateException("User Role is not initiated"));
         var user = User.builder()
                 .firstName(registrationRequest.getFirstName())
@@ -36,12 +41,12 @@ private final EmailService emailService;
                 .accountLocked(false)
                 .build();
         userRepository.save(user);
-        sendValidationEmail(user);
+        System.out.println(generateAndSaveActivationToken(user));
 
 
     }
 
-    private void sendValidationEmail(User user) {
+    private void sendValidationEmail(User user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user);
         //send email
         emailService.sendEmail(user.getEmail(), user.getName(), EmailTemplateName.ACTIVATE_ACCOUNT,confirmationUrl,newToken,"Account Activation");
@@ -55,6 +60,7 @@ private final EmailService emailService;
                 token(generatedToken)
                 .createdAt(LocalDateTime.now())
                 .expiresAt(LocalDateTime.now().plusMinutes(15))
+                .user(user)
                 .build();
         tokenRepository.save(token);
         return generatedToken;
