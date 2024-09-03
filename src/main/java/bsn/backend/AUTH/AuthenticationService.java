@@ -9,14 +9,17 @@ import bsn.backend.SECURITY.JwtService;
 import bsn.backend.USER.Token;
 import bsn.backend.USER.User;
 import jakarta.mail.MessagingException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -94,5 +97,19 @@ private String confirmationUrl;
             AuthenticationResponse.builder()
                     .token(token)
                     .build();
+    }
+
+    @Transactional
+    public void activateAccount(String token) throws MessagingException{
+        Token savedToken = tokenRepository.findByToken(token).orElseThrow(
+                () -> new RuntimeException("Invalid Token"));
+        if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())){
+            throw new RuntimeException("Token has been Expired. A new Token Sent to your Email Address");
+        }
+        var user = userRepository.findById(savedToken.getUser().getId()).orElseThrow(()->new RuntimeException("User Not Found"));
+        user.setEnabled(true);
+        userRepository.save(user);
+        savedToken.setValidatedAt(LocalDateTime.now());
+        tokenRepository.save(savedToken);
     }
 }

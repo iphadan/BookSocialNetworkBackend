@@ -110,3 +110,147 @@ Consider defining a bean of type 'org.springframework.security.authentication.Au
 2024-09-03T10:06:01.863+03:00  INFO 22124 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-09-03T10:06:01.864+03:00  INFO 22124 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2024-09-03T10:06:02.044+03:00 DEBUG 22124 --- [http-nio-3000-exec-2] org.hibernate.SQL                        : select u1_0.id,u1_0.account_locked,u1_0.created_date,u1_0.date_of_birth,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.gender,u1_0.last_modified_date,u1_0.last_name,u1_0.password from _user u1_0 where u1_0.email=?
+2024-09-03T10:07:12.665+03:00 DEBUG 22124 --- [http-nio-3000-exec-5] org.hibernate.SQL                        : select u1_0.id,u1_0.account_locked,u1_0.created_date,u1_0.date_of_birth,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.gender,u1_0.last_modified_date,u1_0.last_name,u1_0.password from _user u1_0 where u1_0.email=?
+2024-09-03T10:07:12.726+03:00 DEBUG 22124 --- [http-nio-3000-exec-5] org.hibernate.SQL                        : select r1_0.users_id,r1_1.id,r1_1.created_date,r1_1.last_modified_date,r1_1.name from _user_roles r1_0 join role r1_1 on r1_1.id=r1_0.roles_id where r1_0.users_id=?
+2024-09-03T10:30:21.334+03:00  INFO 22124 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:30:21.338+03:00  INFO 22124 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-03T10:30:21.345+03:00  INFO 22124 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-03T10:30:24.968+03:00  INFO 12108 --- [main] bsn.backend.BackendApplication           : Starting BackendApplication using Java 17.0.9 with PID 12108 (D:\Projects\Spring\BookSocialNetworkBackend\target\classes started by ephremd in D:\Projects\Spring\BookSocialNetworkBackend)
+2024-09-03T10:30:24.971+03:00  INFO 12108 --- [main] bsn.backend.BackendApplication           : The following 1 profile is active: "dev"
+2024-09-03T10:30:25.799+03:00  INFO 12108 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-03T10:30:25.855+03:00  INFO 12108 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2024-09-03T10:30:26.592+03:00  INFO 12108 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+2024-09-03T10:30:26.604+03:00  INFO 12108 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-03T10:30:26.604+03:00  INFO 12108 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-03T10:30:26.671+03:00  INFO 12108 --- [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2024-09-03T10:30:26.672+03:00  INFO 12108 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1656 ms
+2024-09-03T10:30:26.854+03:00  INFO 12108 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-03T10:30:26.906+03:00  INFO 12108 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-03T10:30:26.931+03:00  INFO 12108 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-03T10:30:27.227+03:00  INFO 12108 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-03T10:30:27.256+03:00  INFO 12108 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-03T10:30:27.439+03:00  INFO 12108 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@319aa9ee
+2024-09-03T10:30:27.441+03:00  INFO 12108 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-03T10:30:27.475+03:00  WARN 12108 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-03T10:30:28.424+03:00  INFO 12108 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-03T10:30:28.496+03:00  INFO 12108 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:30:28.871+03:00  INFO 12108 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-03T10:30:28.871+03:00  WARN 12108 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-03T10:30:28.965+03:00  WARN 12108 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-03T10:30:29.665+03:00  INFO 12108 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path '/api/v1'
+2024-09-03T10:30:29.675+03:00  INFO 12108 --- [main] bsn.backend.BackendApplication           : Started BackendApplication in 5.166 seconds (process running for 5.566)
+2024-09-03T10:30:29.820+03:00 DEBUG 12108 --- [main] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
+2024-09-03T10:35:47.390+03:00  INFO 12108 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:35:47.390+03:00  INFO 12108 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-03T10:35:47.405+03:00  INFO 12108 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-03T10:35:49.525+03:00  INFO 8748 --- [main] bsn.backend.BackendApplication           : Starting BackendApplication using Java 17.0.9 with PID 8748 (D:\Projects\Spring\BookSocialNetworkBackend\target\classes started by ephremd in D:\Projects\Spring\BookSocialNetworkBackend)
+2024-09-03T10:35:49.527+03:00  INFO 8748 --- [main] bsn.backend.BackendApplication           : The following 1 profile is active: "dev"
+2024-09-03T10:35:50.346+03:00  INFO 8748 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-03T10:35:50.411+03:00  INFO 8748 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 3 JPA repository interfaces.
+2024-09-03T10:35:51.218+03:00  INFO 8748 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+2024-09-03T10:35:51.229+03:00  INFO 8748 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-03T10:35:51.230+03:00  INFO 8748 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-03T10:35:51.300+03:00  INFO 8748 --- [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2024-09-03T10:35:51.301+03:00  INFO 8748 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1727 ms
+2024-09-03T10:35:51.467+03:00  INFO 8748 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-03T10:35:51.520+03:00  INFO 8748 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-03T10:35:51.556+03:00  INFO 8748 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-03T10:35:51.809+03:00  INFO 8748 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-03T10:35:51.834+03:00  INFO 8748 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-03T10:35:51.992+03:00  INFO 8748 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@73385d3f
+2024-09-03T10:35:51.994+03:00  INFO 8748 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-03T10:35:52.038+03:00  WARN 8748 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-03T10:35:53.015+03:00  INFO 8748 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-03T10:35:53.051+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : create table _user (id integer not null, account_locked boolean not null, created_date timestamp(6) not null, date_of_birth date, email varchar(255), enabled boolean not null, first_name varchar(255), gender varchar(255), last_modified_date timestamp(6), last_name varchar(255), password varchar(255), primary key (id))
+2024-09-03T10:35:53.101+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : create table _user_roles (users_id integer not null, roles_id integer not null)
+2024-09-03T10:35:53.104+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : create table role (id integer not null, created_date timestamp(6) not null, last_modified_date timestamp(6), name varchar(255), primary key (id))
+2024-09-03T10:35:53.110+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : create table token (id integer not null, created_at timestamp(6), expires_at timestamp(6), token varchar(255), validated_at timestamp(6), user_id integer not null, primary key (id))
+2024-09-03T10:35:53.116+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : alter table if exists _user_roles add constraint FKtq7v0vo9kka3qeaw2alou2j8p foreign key (roles_id) references role
+2024-09-03T10:35:53.128+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : alter table if exists _user_roles add constraint FKkna43mk14wb08rt62w1982ki6 foreign key (users_id) references _user
+2024-09-03T10:35:53.136+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : alter table if exists token add constraint FKiblu4cjwvyntq3ugo31klp1c6 foreign key (user_id) references _user
+2024-09-03T10:35:53.142+03:00  INFO 8748 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:35:53.521+03:00  INFO 8748 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-03T10:35:53.523+03:00  WARN 8748 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-03T10:35:53.608+03:00  WARN 8748 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-03T10:35:54.275+03:00  INFO 8748 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path '/api/v1'
+2024-09-03T10:35:54.284+03:00  INFO 8748 --- [main] bsn.backend.BackendApplication           : Started BackendApplication in 5.213 seconds (process running for 5.581)
+2024-09-03T10:35:54.406+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
+2024-09-03T10:35:54.424+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : select nextval('role_seq')
+2024-09-03T10:35:54.473+03:00 DEBUG 8748 --- [main] org.hibernate.SQL                        : insert into role (created_date,name,id) values (?,?,?)
+2024-09-03T10:36:06.296+03:00  INFO 8748 --- [http-nio-3000-exec-1] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-03T10:36:06.296+03:00  INFO 8748 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-03T10:36:06.296+03:00  INFO 8748 --- [http-nio-3000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-09-03T10:36:06.516+03:00 DEBUG 8748 --- [http-nio-3000-exec-1] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
+2024-09-03T10:36:06.696+03:00 DEBUG 8748 --- [http-nio-3000-exec-1] org.hibernate.SQL                        : select nextval('_user_seq')
+2024-09-03T10:36:06.713+03:00 DEBUG 8748 --- [http-nio-3000-exec-1] org.hibernate.SQL                        : insert into _user (account_locked,created_date,date_of_birth,email,enabled,first_name,gender,last_name,password,id) values (?,?,?,?,?,?,?,?,?,?)
+2024-09-03T10:36:06.729+03:00 DEBUG 8748 --- [http-nio-3000-exec-1] org.hibernate.SQL                        : insert into _user_roles (users_id,roles_id) values (?,?)
+2024-09-03T10:36:06.748+03:00 DEBUG 8748 --- [http-nio-3000-exec-1] org.hibernate.SQL                        : select nextval('token_seq')
+2024-09-03T10:36:06.748+03:00 DEBUG 8748 --- [http-nio-3000-exec-1] org.hibernate.SQL                        : insert into token (created_at,expires_at,token,user_id,validated_at,id) values (?,?,?,?,?,?)
+2024-09-03T10:36:35.336+03:00  WARN 8748 --- [http-nio-3000-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> bsn.backend.AUTH.AuthenticationController.registerUser(bsn.backend.AUTH.RegistrationRequest) throws jakarta.mail.MessagingException: [Field error in object 'registrationRequest' on field 'email': rejected value [ephadaniel177gmail.com]; codes [Email.registrationRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registrationRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@58daf94a,.*]; default message [Email is not Well Formatted]] ]
+2024-09-03T10:36:43.868+03:00  WARN 8748 --- [http-nio-3000-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> bsn.backend.AUTH.AuthenticationController.registerUser(bsn.backend.AUTH.RegistrationRequest) throws jakarta.mail.MessagingException: [Field error in object 'registrationRequest' on field 'email': rejected value [ephadaniel177gmail.com]; codes [Email.registrationRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registrationRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@58daf94a,.*]; default message [Email is not Well Formatted]] ]
+2024-09-03T10:36:51.888+03:00 DEBUG 8748 --- [http-nio-3000-exec-5] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
+2024-09-03T10:36:51.997+03:00 DEBUG 8748 --- [http-nio-3000-exec-5] org.hibernate.SQL                        : insert into _user (account_locked,created_date,date_of_birth,email,enabled,first_name,gender,last_name,password,id) values (?,?,?,?,?,?,?,?,?,?)
+2024-09-03T10:36:51.997+03:00 DEBUG 8748 --- [http-nio-3000-exec-5] org.hibernate.SQL                        : insert into _user_roles (users_id,roles_id) values (?,?)
+2024-09-03T10:36:52.013+03:00 DEBUG 8748 --- [http-nio-3000-exec-5] org.hibernate.SQL                        : insert into token (created_at,expires_at,token,user_id,validated_at,id) values (?,?,?,?,?,?)
+2024-09-03T10:37:43.102+03:00  WARN 8748 --- [http-nio-3000-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2024-09-03T10:38:00.254+03:00  WARN 8748 --- [http-nio-3000-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'token' for method parameter type String is not present]
+2024-09-03T10:38:24.139+03:00  WARN 8748 --- [http-nio-3000-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'token' for method parameter type String is not present]
+2024-09-03T10:40:15.865+03:00  INFO 8748 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:40:15.869+03:00  INFO 8748 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-03T10:40:15.880+03:00  INFO 8748 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-03T10:40:19.408+03:00  INFO 19132 --- [main] bsn.backend.BackendApplication           : Starting BackendApplication using Java 17.0.9 with PID 19132 (D:\Projects\Spring\BookSocialNetworkBackend\target\classes started by ephremd in D:\Projects\Spring\BookSocialNetworkBackend)
+2024-09-03T10:40:19.411+03:00  INFO 19132 --- [main] bsn.backend.BackendApplication           : The following 1 profile is active: "dev"
+2024-09-03T10:40:20.214+03:00  INFO 19132 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-03T10:40:20.277+03:00  INFO 19132 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 3 JPA repository interfaces.
+2024-09-03T10:40:21.031+03:00  INFO 19132 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+2024-09-03T10:40:21.043+03:00  INFO 19132 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-03T10:40:21.044+03:00  INFO 19132 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-03T10:40:21.129+03:00  INFO 19132 --- [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2024-09-03T10:40:21.129+03:00  INFO 19132 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1678 ms
+2024-09-03T10:40:21.299+03:00  INFO 19132 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-03T10:40:21.417+03:00  INFO 19132 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-03T10:40:21.467+03:00  INFO 19132 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-03T10:40:21.754+03:00  INFO 19132 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-03T10:40:21.777+03:00  INFO 19132 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-03T10:40:21.934+03:00  INFO 19132 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@236fd411
+2024-09-03T10:40:21.936+03:00  INFO 19132 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-03T10:40:21.973+03:00  WARN 19132 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-03T10:40:22.963+03:00  INFO 19132 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-03T10:40:23.047+03:00  INFO 19132 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:40:23.445+03:00  INFO 19132 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-03T10:40:23.446+03:00  WARN 19132 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-03T10:40:23.588+03:00  WARN 19132 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-03T10:40:24.326+03:00  INFO 19132 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path '/api/v1'
+2024-09-03T10:40:24.337+03:00  INFO 19132 --- [main] bsn.backend.BackendApplication           : Started BackendApplication in 5.36 seconds (process running for 5.726)
+2024-09-03T10:40:24.475+03:00 DEBUG 19132 --- [main] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
+2024-09-03T10:40:28.602+03:00  INFO 19132 --- [http-nio-3000-exec-2] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-03T10:40:28.602+03:00  INFO 19132 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-03T10:40:28.603+03:00  INFO 19132 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-03T10:42:43.782+03:00  INFO 19132 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:42:43.787+03:00  INFO 19132 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-03T10:42:43.795+03:00  INFO 19132 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-03T10:42:47.260+03:00  INFO 16732 --- [main] bsn.backend.BackendApplication           : Starting BackendApplication using Java 17.0.9 with PID 16732 (D:\Projects\Spring\BookSocialNetworkBackend\target\classes started by ephremd in D:\Projects\Spring\BookSocialNetworkBackend)
+2024-09-03T10:42:47.262+03:00  INFO 16732 --- [main] bsn.backend.BackendApplication           : The following 1 profile is active: "dev"
+2024-09-03T10:42:48.036+03:00  INFO 16732 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-03T10:42:48.096+03:00  INFO 16732 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+2024-09-03T10:42:48.831+03:00  INFO 16732 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+2024-09-03T10:42:48.844+03:00  INFO 16732 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-03T10:42:48.845+03:00  INFO 16732 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-03T10:42:48.915+03:00  INFO 16732 --- [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2024-09-03T10:42:48.916+03:00  INFO 16732 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1609 ms
+2024-09-03T10:42:49.072+03:00  INFO 16732 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-03T10:42:49.117+03:00  INFO 16732 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-03T10:42:49.150+03:00  INFO 16732 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-03T10:42:49.420+03:00  INFO 16732 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-03T10:42:49.446+03:00  INFO 16732 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-03T10:42:49.614+03:00  INFO 16732 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6814262d
+2024-09-03T10:42:49.615+03:00  INFO 16732 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-03T10:42:49.657+03:00  WARN 16732 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-03T10:42:50.656+03:00  INFO 16732 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-03T10:42:50.799+03:00  INFO 16732 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T10:42:51.170+03:00  INFO 16732 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-03T10:42:51.171+03:00  WARN 16732 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-03T10:42:51.276+03:00  WARN 16732 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-03T10:42:51.921+03:00  INFO 16732 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path '/api/v1'
+2024-09-03T10:42:51.930+03:00  INFO 16732 --- [main] bsn.backend.BackendApplication           : Started BackendApplication in 5.074 seconds (process running for 5.44)
+2024-09-03T10:42:52.059+03:00 DEBUG 16732 --- [main] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
