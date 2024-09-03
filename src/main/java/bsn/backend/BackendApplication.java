@@ -25,7 +25,7 @@ public class BackendApplication {
 
 		return args ->	{
 			if(roleRepository.findRoleByName("USER").isEmpty()){
-			Role role = Role.builder().name("USER").build();
+				Role role = Role.builder().name("USER").build();
 			roleRepository.save(role);
 		}
 

@@ -5,16 +5,20 @@ import bsn.backend.EMAIL.EmailTemplateName;
 import bsn.backend.REPOSITORIES.RoleRepository;
 import bsn.backend.REPOSITORIES.TokenRepository;
 import bsn.backend.REPOSITORIES.UserRepository;
+import bsn.backend.SECURITY.JwtService;
 import bsn.backend.USER.Token;
 import bsn.backend.USER.User;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -25,7 +29,9 @@ private final UserRepository userRepository;
 private final RoleRepository roleRepository;
 private final PasswordEncoder passwordEncoder;
 private final TokenRepository tokenRepository;
+private final AuthenticationManager authenticationManager;
 private final EmailService emailService;
+private final JwtService jwtService;
 @Value("${spring.application.mailing.frontend.activationUrl}")
 private String confirmationUrl;
     public void register(RegistrationRequest registrationRequest) throws MessagingException {
@@ -75,5 +81,18 @@ private String confirmationUrl;
             codeBuilder.append(characters.charAt(charIndex));
         }
         return codeBuilder.toString();
+    }
+
+    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
+
+       var auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),authenticationRequest.getPassword()));
+    var  claims = new HashMap<String, Object>();
+    var user = ((User)auth.getPrincipal());
+    claims.put("fullName",user.getName());
+    var token = jwtService.generateToken(claims,user);
+    return
+            AuthenticationResponse.builder()
+                    .token(token)
+                    .build();
     }
 }
