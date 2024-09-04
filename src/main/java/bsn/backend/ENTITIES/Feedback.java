@@ -18,7 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Setter
 @SuperBuilder
 public class Feedback extends BaseEntity {
-    private String note;
+    private double note;
     private String comment;
     @ManyToOne
     @JoinColumn(name = "book_id ")

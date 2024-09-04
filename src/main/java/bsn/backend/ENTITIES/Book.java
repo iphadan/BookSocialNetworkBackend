@@ -1,10 +1,7 @@
 package bsn.backend.ENTITIES;
 
 import bsn.backend.USER.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,5 +31,14 @@ public class Book extends BaseEntity{
     private List<Feedback> feedbacks;
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> transactionHistories;
+
+    @Transient
+    public Double calculateRate(){
+        if (this.feedbacks.isEmpty()){
+            return 0.0;
+        }
+       var rate =  this.feedbacks.stream().mapToDouble(Feedback::getNote).average().orElse(0.0);
+        return Math.round(rate * 10.0) / 10.0;
+    }
 
 }
