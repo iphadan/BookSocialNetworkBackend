@@ -424,3 +424,46 @@ java.lang.RuntimeException: Invalid Token
 2024-09-03T12:26:18.973+03:00  INFO 4972 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-09-03T12:26:18.978+03:00  INFO 4972 --- [http-nio-3000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
 2024-09-03T12:58:23.594+03:00  WARN 4972 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=21m22s912ms104µs).
+2024-09-03T13:12:27.057+03:00 DEBUG 4972 --- [http-nio-3000-exec-8] org.hibernate.SQL                        : select u1_0.id,u1_0.account_locked,u1_0.created_date,u1_0.date_of_birth,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.gender,u1_0.last_modified_date,u1_0.last_name,u1_0.password from _user u1_0 where u1_0.email=?
+2024-09-03T13:14:05.527+03:00 DEBUG 4972 --- [http-nio-3000-exec-1] org.hibernate.SQL                        : select t1_0.id,t1_0.created_at,t1_0.expires_at,t1_0.token,t1_0.user_id,t1_0.validated_at from token t1_0 where t1_0.token=?
+2024-09-03T15:21:59.333+03:00  INFO 4972 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T15:21:59.359+03:00  INFO 4972 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-03T15:21:59.365+03:00  INFO 4972 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-03T15:22:05.567+03:00  INFO 1972 --- [main] bsn.backend.BackendApplication           : Starting BackendApplication using Java 17.0.9 with PID 1972 (D:\Projects\Spring\BookSocialNetworkBackend\target\classes started by ephremd in D:\Projects\Spring\BookSocialNetworkBackend)
+2024-09-03T15:22:05.574+03:00  INFO 1972 --- [main] bsn.backend.BackendApplication           : The following 1 profile is active: "dev"
+2024-09-03T15:22:06.624+03:00  INFO 1972 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-03T15:22:06.732+03:00  INFO 1972 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 3 JPA repository interfaces.
+2024-09-03T15:22:07.710+03:00  INFO 1972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+2024-09-03T15:22:07.723+03:00  INFO 1972 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-03T15:22:07.724+03:00  INFO 1972 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-03T15:22:07.802+03:00  INFO 1972 --- [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2024-09-03T15:22:07.802+03:00  INFO 1972 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2165 ms
+2024-09-03T15:22:08.002+03:00  INFO 1972 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-03T15:22:08.066+03:00  INFO 1972 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-03T15:22:08.104+03:00  INFO 1972 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-03T15:22:08.460+03:00  INFO 1972 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-03T15:22:08.490+03:00  INFO 1972 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-03T15:22:08.715+03:00  INFO 1972 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3350ab4
+2024-09-03T15:22:08.716+03:00  INFO 1972 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-03T15:22:08.759+03:00  WARN 1972 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-03T15:22:10.101+03:00  INFO 1972 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-03T15:22:10.144+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : create table book (id integer not null, created_by integer, created_date timestamp(6) not null, last_modified_by integer, last_modified_date timestamp(6), archived boolean not null, author_name varchar(255), book_cover varchar(255), isbn varchar(255), synopsis varchar(255), title varchar(255), owner_id integer, primary key (id))
+2024-09-03T15:22:10.181+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : create table book_transaction_history (id integer not null, created_by integer, created_date timestamp(6) not null, last_modified_by integer, last_modified_date timestamp(6), book_id integer, user_id integer, primary key (id))
+2024-09-03T15:22:10.186+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : create table feedback (id integer not null, created_by integer, created_date timestamp(6) not null, last_modified_by integer, last_modified_date timestamp(6), comment varchar(255), note varchar(255), book_id integer, primary key (id))
+2024-09-03T15:22:10.198+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : create sequence book_seq start with 1 increment by 50
+2024-09-03T15:22:10.201+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : create sequence book_transaction_history_seq start with 1 increment by 50
+2024-09-03T15:22:10.203+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : create sequence feedback_seq start with 1 increment by 50
+2024-09-03T15:22:10.244+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : alter table if exists book add constraint FK61m8am98w4y4vgpl82sojy8bh foreign key (owner_id) references _user
+2024-09-03T15:22:10.263+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : alter table if exists book_transaction_history add constraint FKetks95hi6ay47e16sj6vdv9g9 foreign key (book_id) references book
+2024-09-03T15:22:10.275+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : alter table if exists book_transaction_history add constraint FKh081geal7xoydl9vyh7cbf4wc foreign key (user_id) references _user
+2024-09-03T15:22:10.277+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : alter table if exists feedback add constraint FKgclyi456gw0lcd6xcfj2l7r6s foreign key (book_id) references book
+2024-09-03T15:22:10.299+03:00  INFO 1972 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T15:22:10.809+03:00  INFO 1972 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-03T15:22:10.810+03:00  WARN 1972 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-03T15:22:10.926+03:00  WARN 1972 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-03T15:22:11.815+03:00  INFO 1972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path '/api/v1'
+2024-09-03T15:22:11.828+03:00  INFO 1972 --- [main] bsn.backend.BackendApplication           : Started BackendApplication in 6.782 seconds (process running for 7.304)
+2024-09-03T15:22:12.010+03:00 DEBUG 1972 --- [main] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
+2024-09-03T15:59:01.747+03:00  INFO 1972 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-03T15:59:01.752+03:00  INFO 1972 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-03T15:59:01.756+03:00  INFO 1972 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

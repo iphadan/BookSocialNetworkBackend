@@ -1,10 +1,13 @@
 package bsn.backend.USER;
 
+import bsn.backend.ENTITIES.Book;
+import bsn.backend.ENTITIES.BookTransactionHistory;
 import bsn.backend.ROLES.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,12 +38,16 @@ public class User implements UserDetails , Principal {
     private String password;
     private String gender;
     private LocalDate dateOfBirth;
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> transactionHistories;
     @ManyToMany
     private List<Role> roles;
     @CreatedDate
     @Column(nullable = false,updatable = false)
     private LocalDateTime createdDate;
-    @LastModifiedBy
+    @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
     private boolean accountLocked ;
