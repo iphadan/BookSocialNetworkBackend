@@ -1,5 +1,6 @@
 package bsn.backend.EXCEPTION.HANDLERS;
 
+import bsn.backend.EXCEPTIONS.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,4 +68,12 @@ return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ExceptionResponse.bui
                 .error(exp.getMessage())
                 .build());
     }
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exp){
+        exp.printStackTrace();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ExceptionResponse.builder()
+                .error(exp.getMessage())
+                .build());
+}
+
 }

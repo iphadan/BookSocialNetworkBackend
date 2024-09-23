@@ -5,6 +5,7 @@ import bsn.backend.CONTROLLERS.BorrowedBookResponse;
 import bsn.backend.CONTROLLERS.PageResponse;
 import bsn.backend.ENTITIES.Book;
 import bsn.backend.ENTITIES.BookTransactionHistory;
+import bsn.backend.EXCEPTIONS.OperationNotPermittedException;
 import bsn.backend.MAPPERS.BookMapper;
 import bsn.backend.RECORDS.BookRequest;
 import bsn.backend.REPOSITORIES.BookRepository;
@@ -93,6 +94,35 @@ return new PageResponse<>(
                 books.isFirst(),
                 books.isLast()
         );
+
+    }
+
+    public PageResponse<BorrowedBookResponse> getAllReturnedBooks(int page, int size, Authentication connectedUser) {
+        User user = (User) connectedUser.getPrincipal();
+        Pageable pageable = PageRequest.of(page,size,Sort.by("createdDate").descending());
+        Page<BookTransactionHistory> books = historyRepository.findAllReturnedBooks(pageable,user.getId());
+        List<BorrowedBookResponse> borrowedBookResponses=books.stream().map(BookMapper::toBorrowedBookResponse).toList();
+        return new PageResponse<>(
+                borrowedBookResponses,
+                books.getNumber(),
+                books.getTotalPages(),
+                books.getTotalElements(),
+                books.getSize(),
+                books.isFirst(),
+                books.isLast()
+        );
+
+    }
+
+    public Integer updateShareableStatus(Integer bookId,Authentication connectedUser) {
+        User user = (User) connectedUser.getPrincipal();
+        Book book = bookRepository.findById(bookId).orElseThrow(()-> new  EntityNotFoundException("Entity Not Found"));
+        if(!user.getId().equals(book.getOwner().getId()) ){
+            throw new OperationNotPermittedException("You can not update the book");
+        }
+        book.setShareable(!book.isShareable());
+        bookRepository.save(book);
+        return bookId;
 
     }
 }

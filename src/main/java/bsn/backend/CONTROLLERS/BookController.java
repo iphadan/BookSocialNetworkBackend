@@ -53,4 +53,17 @@ return ResponseEntity.ok(service.getBookById(bookId));
 
         return ResponseEntity.ok(service.getAllBorrowedBooks(page,size,connectedUser));
     }
+    @GetMapping("/returned")
+    public ResponseEntity<PageResponse<BorrowedBookResponse>> getAllReturnedBooks(
+            @RequestParam(name = "page",defaultValue = "0",required = false) int page,
+            @RequestParam(name = "size",defaultValue = "10",required = false) int size,
+            Authentication connectedUser){
+
+        return ResponseEntity.ok(service.getAllReturnedBooks(page,size,connectedUser));
+    }
+    @PatchMapping("/shareable/{bookId}")
+    public ResponseEntity<Integer> updateShareableStatus(@PathVariable("bookId") Integer bookId,Authentication connectedUser){
+        return ResponseEntity.ok((service.updateShareableStatus(bookId,connectedUser)));
+    }
 }
+
