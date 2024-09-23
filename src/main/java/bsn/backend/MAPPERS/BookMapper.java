@@ -1,7 +1,9 @@
 package bsn.backend.MAPPERS;
 
 import bsn.backend.CONTROLLERS.BookResponse;
+import bsn.backend.CONTROLLERS.BorrowedBookResponse;
 import bsn.backend.ENTITIES.Book;
+import bsn.backend.ENTITIES.BookTransactionHistory;
 import bsn.backend.RECORDS.BookRequest;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,6 +37,18 @@ return Book.builder()
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner())
+                .build();
+    }
+    public static BorrowedBookResponse toBorrowedBookResponse(BookTransactionHistory history) {
+        return BorrowedBookResponse.builder()
+                .id(history.getBook().getId())
+                .title(history.getBook().getTitle())
+                .authorName(history.getBook().getAuthorName())
+                .isbn(history.getBook().getIsbn())
+                .rate(history.getBook().calculateRate())
+                .returned(history.isReturned())
+                .returnApproved(history.isReturnedApproved())
+                .owner(history.getBook().getOwner())
                 .build();
     }
 

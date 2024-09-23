@@ -45,4 +45,12 @@ return ResponseEntity.ok(service.getBookById(bookId));
 
         return ResponseEntity.ok(service.getAllBooksOfOwner(page,size,connectedUser));
     }
+    @GetMapping("/borrowed")
+    public ResponseEntity<PageResponse<BorrowedBookResponse>> getAllBorrowedBooks(
+            @RequestParam(name = "page",defaultValue = "0",required = false) int page,
+            @RequestParam(name = "size",defaultValue = "10",required = false) int size,
+            Authentication connectedUser){
+
+        return ResponseEntity.ok(service.getAllBorrowedBooks(page,size,connectedUser));
+    }
 }

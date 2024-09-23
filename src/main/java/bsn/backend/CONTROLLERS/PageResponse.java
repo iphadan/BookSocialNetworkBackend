@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PageResponse<T> {
-    private List<BookResponse> content;
+    private List<T> content;
     private int page;
     private int size;
     private Long totalElements;

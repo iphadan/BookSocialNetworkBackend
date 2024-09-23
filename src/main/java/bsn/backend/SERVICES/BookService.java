@@ -1,11 +1,14 @@
 package bsn.backend.SERVICES;
 
 import bsn.backend.CONTROLLERS.BookResponse;
+import bsn.backend.CONTROLLERS.BorrowedBookResponse;
 import bsn.backend.CONTROLLERS.PageResponse;
 import bsn.backend.ENTITIES.Book;
+import bsn.backend.ENTITIES.BookTransactionHistory;
 import bsn.backend.MAPPERS.BookMapper;
 import bsn.backend.RECORDS.BookRequest;
 import bsn.backend.REPOSITORIES.BookRepository;
+import bsn.backend.REPOSITORIES.BookTransactionHistoryRepository;
 import bsn.backend.SPECIFICATIONS.BookSpecification;
 import bsn.backend.USER.User;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,6 +27,7 @@ import java.util.List;
 public class BookService {
     private final BookMapper bookMapper;
     private final BookRepository bookRepository;
+    private final BookTransactionHistoryRepository historyRepository;
     public Integer save(BookRequest request, Authentication connectedUser) {
         User user = (User) connectedUser.getPrincipal();
         Book book = bookMapper.toBook(request);
@@ -72,6 +76,23 @@ return new PageResponse<>(
         books.isFirst(),
         books.isLast()
 );
+
+    }
+
+    public PageResponse<BorrowedBookResponse> getAllBorrowedBooks(int page, int size, Authentication connectedUser) {
+        User user = (User) connectedUser.getPrincipal();
+        Pageable pageable = PageRequest.of(page,size,Sort.by("createdDate").descending());
+        Page<BookTransactionHistory> books = historyRepository.findAllBorrowedBooks(pageable,user.getId());
+        List<BorrowedBookResponse> borrowedBookResponses=books.stream().map(BookMapper::toBorrowedBookResponse).toList();
+        return new PageResponse<>(
+                borrowedBookResponses,
+                books.getNumber(),
+                books.getTotalPages(),
+                books.getTotalElements(),
+                books.getSize(),
+                books.isFirst(),
+                books.isLast()
+        );
 
     }
 }
