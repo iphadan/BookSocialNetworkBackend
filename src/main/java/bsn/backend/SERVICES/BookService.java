@@ -164,4 +164,37 @@ BookTransactionHistory transactionHistory = BookTransactionHistory.builder()
         .build();
 return historyRepository.save(transactionHistory).getId();
     }
+
+    public Integer returnBook(Integer bookId, Authentication connectedUser) {
+        User user = (User) connectedUser.getPrincipal();
+        BookTransactionHistory bookTransactionHistory= historyRepository.findById(bookId).orElseThrow(()-> new  EntityNotFoundException("Entity Not Found"));
+        if(!user.getId().equals(bookTransactionHistory.getUser().getId())){
+            throw new OperationNotPermittedException("You can not do this since you did not borrow the book");
+
+        }
+        else if(user.getId().equals(bookTransactionHistory.getBook().getOwner().getId()) )
+        {
+            throw new OperationNotPermittedException("You can not return your own book");
+
+        }
+        bookTransactionHistory.setReturned(true);
+        return historyRepository.save(bookTransactionHistory).getId();
+
+
+    }
+
+    public Integer returnApproveBook(Integer bookId, Authentication connectedUser) {
+        User user = (User) connectedUser.getPrincipal();
+        BookTransactionHistory bookTransactionHistory= historyRepository.findById(bookId).orElseThrow(()-> new  EntityNotFoundException("Entity Not Found"));
+        if(!user.getId().equals(bookTransactionHistory.getBook().getOwner().getId()) ){
+            throw new OperationNotPermittedException("You can not update other's book approval status");
+        }
+        if(bookTransactionHistory.isReturnedApproved()){
+            throw new OperationNotPermittedException("Book Transactional History is Already Approved");
+
+        }
+        bookTransactionHistory.setReturnedApproved(true);
+        historyRepository.save(bookTransactionHistory);
+        return bookTransactionHistory.getId();
+    }
 }
