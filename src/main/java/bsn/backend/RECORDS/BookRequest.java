@@ -2,11 +2,11 @@ package bsn.backend.RECORDS;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-@Getter
 @Setter
+@Getter
 
 public record BookRequest(
         Integer id,

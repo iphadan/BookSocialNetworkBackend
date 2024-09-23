@@ -6,6 +6,7 @@ import bsn.backend.ENTITIES.Book;
 import bsn.backend.MAPPERS.BookMapper;
 import bsn.backend.RECORDS.BookRequest;
 import bsn.backend.REPOSITORIES.BookRepository;
+import bsn.backend.SPECIFICATIONS.BookSpecification;
 import bsn.backend.USER.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -55,10 +56,10 @@ public class BookService {
 
     }
 
-    public PageResponse<BookResponse> getAllBOoksOfOwner(int page, int size, Authentication connectedUser) {
+    public PageResponse<BookResponse> getAllBooksOfOwner(int page, int size, Authentication connectedUser) {
         User user = (User) connectedUser.getPrincipal();
 Pageable pageable = PageRequest.of(page,size,Sort.by("createdDate").descending());
-Page<Book> books = bookRepository.findAllDisplayableBooksOfOwner(pageable, user.getId());
+Page<Book> books = bookRepository.findAll(BookSpecification.withOwnerId(user.getId()),pageable);
 
 List<BookResponse> bookResponses = books.stream().map(bookMapper::toBookResponse).toList();
 

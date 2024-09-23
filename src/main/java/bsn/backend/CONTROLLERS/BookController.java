@@ -43,6 +43,6 @@ return ResponseEntity.ok(service.getBookById(bookId));
             @RequestParam(name = "size",defaultValue = "10",required = false) int size,
             Authentication connectedUser){
 
-        return ResponseEntity.ok(service.getAllBOoksOfOwner(page,size,connectedUser));
+        return ResponseEntity.ok(service.getAllBooksOfOwner(page,size,connectedUser));
     }
 }
