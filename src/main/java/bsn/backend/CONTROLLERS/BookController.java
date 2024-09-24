@@ -78,9 +78,6 @@ return ResponseEntity.ok(service.getBookById(bookId));
     public ResponseEntity<Integer> returnBook(@PathVariable("bookId") Integer bookId,Authentication connectedUser){
         return ResponseEntity.ok((service.returnBook(bookId,connectedUser)));
     }
-    @PatchMapping("/return/approve/{bookId}")
-    public ResponseEntity<Integer> returnApproveBook(@PathVariable("bookId") Integer bookId,Authentication connectedUser){
-        return ResponseEntity.ok((service.returnApproveBook(bookId,connectedUser)));
-    }
+
 }
 
