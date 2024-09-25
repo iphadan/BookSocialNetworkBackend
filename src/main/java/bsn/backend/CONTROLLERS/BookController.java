@@ -3,11 +3,13 @@ package bsn.backend.CONTROLLERS;
 import bsn.backend.RECORDS.BookRequest;
 import bsn.backend.SERVICES.BookService;
 import bsn.backend.USER.User;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -81,6 +83,17 @@ return ResponseEntity.ok(service.getBookById(bookId));
     @PatchMapping("/return/approve/{bookId}")
     public ResponseEntity<Integer> returnApproveBook(@PathVariable("bookId") Integer bookId,Authentication connectedUser){
         return ResponseEntity.ok((service.returnApproveBook(bookId,connectedUser)));
+    }
+
+    @PostMapping(value = "/upload/{bookId}",consumes ="multipart/form-data" )
+    public ResponseEntity<?> uploadBookCoverPhoto(@PathVariable("bookId") Integer bookId,
+    @Parameter()
+    @RequestPart("file") MultipartFile photo,
+                                             Authentication connectedUser
+    ){
+
+service.uploadBookCoverPhoto(photo,bookId,connectedUser);
+        return ResponseEntity.accepted().build();
     }
 }
 

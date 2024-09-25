@@ -6,6 +6,7 @@ import bsn.backend.CONTROLLERS.PageResponse;
 import bsn.backend.ENTITIES.Book;
 import bsn.backend.ENTITIES.BookTransactionHistory;
 import bsn.backend.EXCEPTIONS.OperationNotPermittedException;
+import bsn.backend.FILESERVICES.FileStorageService;
 import bsn.backend.MAPPERS.BookMapper;
 import bsn.backend.RECORDS.BookRequest;
 import bsn.backend.REPOSITORIES.BookRepository;
@@ -20,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class BookService {
     private final BookMapper bookMapper;
     private final BookRepository bookRepository;
     private final BookTransactionHistoryRepository historyRepository;
+    private final FileStorageService fileStorageService;
     public Integer save(BookRequest request, Authentication connectedUser) {
         User user = (User) connectedUser.getPrincipal();
         Book book = bookMapper.toBook(request);
@@ -196,5 +199,21 @@ return historyRepository.save(transactionHistory).getId();
         bookTransactionHistory.setReturnedApproved(true);
         historyRepository.save(bookTransactionHistory);
         return bookTransactionHistory.getId();
+    }
+
+    public void uploadBookCoverPhoto(MultipartFile photo, Integer bookId, Authentication connectedUser) {
+
+        User user = (User) connectedUser.getPrincipal();
+        Book book = bookRepository.findById(bookId).orElseThrow(()-> new  EntityNotFoundException("Entity Not Found"));
+
+if(!user.getId().equals(book.getOwner().getId())){
+    throw new OperationNotPermittedException("You can not update the book cover since you do not own it");
+
+}
+var coverPhoto = fileStorageService.saveFile(photo, user.getId());
+book.setBookCover(coverPhoto);
+bookRepository.save(book);
+
+
     }
 }
