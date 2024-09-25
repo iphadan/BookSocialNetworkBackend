@@ -4,10 +4,12 @@ import bsn.backend.CONTROLLERS.BookResponse;
 import bsn.backend.CONTROLLERS.BorrowedBookResponse;
 import bsn.backend.ENTITIES.Book;
 import bsn.backend.ENTITIES.BookTransactionHistory;
+import bsn.backend.FILESERVICES.FileUtils;
 import bsn.backend.RECORDS.BookRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,6 +37,7 @@ return Book.builder()
                 .synopsis(book.getSynopsis())
                 .rate(book.calculateRate())
                 .archived(book.isArchived())
+                .bookCover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .shareable(book.isShareable())
                 .owner(book.getOwner())
                 .build();
