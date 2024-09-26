@@ -2580,3 +2580,29 @@ Caused by: org.postgresql.util.PSQLException: ERROR: column "note" cannot be cas
 2024-09-26T15:58:38.410+03:00  INFO 1632 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-09-26T15:58:38.410+03:00  INFO 1632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-09-26T15:58:38.425+03:00  INFO 1632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-26T16:22:42.023+03:00  INFO 18744 --- [main] bsn.backend.BackendApplication           : Starting BackendApplication using Java 17.0.9 with PID 18744 (D:\Projects\Spring\BookSocialNetworkBackend\target\classes started by ephremd in D:\Projects\Spring\BookSocialNetworkBackend)
+2024-09-26T16:22:42.028+03:00  INFO 18744 --- [main] bsn.backend.BackendApplication           : The following 1 profile is active: "dev"
+2024-09-26T16:22:43.265+03:00  INFO 18744 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-26T16:22:43.372+03:00  INFO 18744 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96 ms. Found 6 JPA repository interfaces.
+2024-09-26T16:22:44.528+03:00  INFO 18744 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+2024-09-26T16:22:44.542+03:00  INFO 18744 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-26T16:22:44.542+03:00  INFO 18744 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-26T16:22:45.657+03:00  INFO 18744 --- [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2024-09-26T16:22:45.658+03:00  INFO 18744 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3559 ms
+2024-09-26T16:22:45.934+03:00  INFO 18744 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-26T16:22:45.998+03:00  INFO 18744 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-26T16:22:46.046+03:00  INFO 18744 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-26T16:22:46.830+03:00  INFO 18744 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-26T16:22:46.859+03:00  INFO 18744 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-26T16:22:47.102+03:00  INFO 18744 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@b788dc2
+2024-09-26T16:22:47.104+03:00  INFO 18744 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-26T16:22:47.166+03:00  WARN 18744 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-26T16:22:48.559+03:00  INFO 18744 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-26T16:22:48.712+03:00  INFO 18744 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26T16:22:49.269+03:00  INFO 18744 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-26T16:22:49.270+03:00  WARN 18744 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-26T16:22:49.412+03:00  INFO 18744 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-26T16:22:50.112+03:00  WARN 18744 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-26T16:22:51.590+03:00  INFO 18744 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path '/api/v1'
+2024-09-26T16:22:51.604+03:00  INFO 18744 --- [main] bsn.backend.BackendApplication           : Started BackendApplication in 10.229 seconds (process running for 10.853)
+2024-09-26T16:22:51.771+03:00 DEBUG 18744 --- [main] org.hibernate.SQL                        : select r1_0.id,r1_0.created_date,r1_0.last_modified_date,r1_0.name from role r1_0 where r1_0.name=?
