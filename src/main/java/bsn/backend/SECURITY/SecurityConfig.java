@@ -25,7 +25,18 @@ private final JwtAuthFilter jwtAuthFilter;
         http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req->req.requestMatchers(
-                        "/auth/**","/keyclock/**","/swagger/**")
+                        "/auth/**",
+                                "/v2/api-docs",
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+                                "/keyclock/**",
+                                "/swagger-resources",
+                                "/configuration/ui/**",
+                                "configuration/security",
+                                "/swagger-ui/**",
+                                "/webjars/**",
+                                "/swagger-ui.html",
+                                "/swagger-resources/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

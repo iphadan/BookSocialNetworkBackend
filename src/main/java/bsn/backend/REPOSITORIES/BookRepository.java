@@ -6,21 +6,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface BookRepository extends JpaRepository<Book, Integer>, JpaSpecificationExecutor<Book> {
     @Query("""
-            SELECT book 
-            FROM Book book 
+            SELECT book
+            FROM Book book
             WHERE book.archived = false AND
-            book.shareAble = false AND
+            book.shareable = false AND
             book.owner.id !=  :userId
             """)
     Page<Book> findAllDisplayableBooks(Pageable pageable, Integer userId);
 @Query("""
-            SELECT book 
-            FROM Book book 
+            SELECT book
+            FROM Book book
             WHERE book.archived = false AND
-            book.owner.id ==  :userId
+            book.owner.id =  :userId
         """)
     Page<Book> findAllDisplayableBooksOfOwner(Pageable pageable, Integer userId);
 }
