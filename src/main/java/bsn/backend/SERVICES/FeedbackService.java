@@ -21,6 +21,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class FeedbackService {
@@ -43,13 +45,24 @@ public class FeedbackService {
 
 
   }
-//
-//    public ResponseEntity<PageResponse<FeedbackResponse>> getAllFeedbacksByBook(Integer bookId, int page, int size, Authentication connectedUser) {
-//        Pageable pageable = PageRequest.of(page,size);
-//        User user =(User) connectedUser.getPrincipal();
-//        Page<Feedback> feedbacks =feedbackRepository.findAllByBookId(bookId,pageable);
-//
-//
-//
-//    }
+
+    public PageResponse<FeedbackResponse> getAllFeedbacksByBook(Integer bookId, int page, int size, Authentication connectedUser) {
+        Pageable pageable = PageRequest.of(page,size);
+        User user =(User) connectedUser.getPrincipal();
+        Page<Feedback> feedbacks =feedbackRepository.findAllByBookId(bookId,pageable);
+        List<FeedbackResponse> feedbackResponses = feedbacks.stream().map(
+                f -> feedbackMapper.toFeedbackResponse(f,user.getId())
+        ).toList();
+return new PageResponse<>(
+        feedbackResponses,
+        feedbacks.getNumber(),
+        feedbacks.getSize(),
+        feedbacks.getTotalElements(),
+        feedbacks.getTotalPages(),
+        feedbacks.isFirst(),
+        feedbacks.isLast()
+                );
+
+
+    }
 }
