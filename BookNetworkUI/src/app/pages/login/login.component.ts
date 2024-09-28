@@ -18,7 +18,18 @@ register() {
 this.router.navigate(['register'])
 }
 login() {
-
+this.errorMsg = [];
+this.authService.authenticate({
+  body:this.authRequest
+}).subscribe({
+  next:() =>{
+    // save the token
+    this.router.navigate(["books"]);
+  },
+  error:(err)=>{
+    console.log(err)
+  }
+});
 }
 authRequest: AuthenticationRequest ={email:'',password:''}
 errorMsg : Array<string> = [];
