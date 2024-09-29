@@ -10,7 +10,6 @@ import bsn.backend.USER.Token;
 import bsn.backend.USER.User;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -85,7 +84,7 @@ private String confirmationUrl;
         return codeBuilder.toString();
     }
 
-    public AuthenticationResponse authenticate(@Valid AuthenticationRequest authenticationRequest) {
+    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
 
        var auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),authenticationRequest.getPassword()));
     var  claims = new HashMap<String, Object>();

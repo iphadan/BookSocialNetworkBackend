@@ -4,6 +4,8 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationControllerService } from '../../services/services';
 import { Router } from '@angular/router';
+import { AuthenticationResponse } from '../../services/models';
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   constructor(private router:Router,private authService:AuthenticationControllerService,){}
+authRequest: AuthenticationRequest ={email:'',password:''}
+errorMsg : Array<string> = [];
 register() {
 this.router.navigate(['register'])
 }
@@ -22,16 +26,20 @@ this.errorMsg = [];
 this.authService.authenticate({
   body:this.authRequest
 }).subscribe({
-  next:() =>{
-    // save the token
-    this.router.navigate(["books"]);
+  next:(res:AuthenticationResponse):void =>{
+    this.router.navigate(["books"])
   },
-  error:(err)=>{
-    console.log(err)
+  error:(err):void =>{
+    console.log(err.error)
+    if(err.error.listValidationErrors){
+      console.log("here")
+    }
+    else{
+      console.log("there")
+    }
   }
 });
 }
-authRequest: AuthenticationRequest ={email:'',password:''}
-errorMsg : Array<string> = [];
+
 
 }
