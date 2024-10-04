@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   set token(token:string){
-    localStorage.setItem('token',token);
+    localStorage.setItem('book_token',token);
   }
   get token(){
-    return localStorage.getItem('token') as string;
+    return localStorage.getItem('book_token') as string;
   }
 }

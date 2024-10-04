@@ -4,7 +4,7 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationControllerService } from '../../services/services';
 import { Router } from '@angular/router';
-import { AuthenticationResponse } from '../../services/models';
+import { AuthenticationResponse, RegistrationRequest } from '../../services/models';
 import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 import { TokenService } from '../../services/services/token/token.service';
 
@@ -16,15 +16,16 @@ import { TokenService } from '../../services/services/token/token.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+register() {
+  this.router.navigate(['/register']);
+}
   constructor(private router:Router,
     private authService:AuthenticationControllerService,
   private tokenService : TokenService
   ){}
-authRequest: AuthenticationRequest ={email:'',password:''}
+authRequest: AuthenticationRequest ={email:'',password:''};
 errorMsg : Array<string> = [];
-register() {
-this.router.navigate(['register'])
-}
+
 
 login() {
 this.errorMsg = [];
@@ -33,16 +34,15 @@ this.authService.authenticate({
 }).subscribe({
   next:(res:AuthenticationResponse):void =>{
     this.tokenService.token = res.token as string;
-    console.log(res)
+    console.log(res.token)
     this.router.navigate(["books"])
   },
-  error:(err ):void =>{
-    if(err.error){
-      console.log("here")
+  error:(err):void =>{
+    if(err.error.listValidationErrors ){
+      this.errorMsg = (err.error.listValidationErrors)
 }
     else{
-      console.log("there")
-      this.errorMsg.push(err.error)
+      this.errorMsg.push(err.error.error)
 
     }
   }
