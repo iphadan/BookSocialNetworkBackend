@@ -6,6 +6,7 @@ import { AuthenticationControllerService } from '../../services/services';
 import { Router } from '@angular/router';
 import { AuthenticationResponse } from '../../services/models';
 import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
+import { TokenService } from '../../services/services/token/token.service';
 
 @Component({
   selector: 'app-login',
@@ -15,27 +16,34 @@ import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private router:Router,private authService:AuthenticationControllerService,){}
+  constructor(private router:Router,
+    private authService:AuthenticationControllerService,
+  private tokenService : TokenService
+  ){}
 authRequest: AuthenticationRequest ={email:'',password:''}
 errorMsg : Array<string> = [];
 register() {
 this.router.navigate(['register'])
 }
+
 login() {
 this.errorMsg = [];
 this.authService.authenticate({
   body:this.authRequest
 }).subscribe({
   next:(res:AuthenticationResponse):void =>{
+    this.tokenService.token = res.token as string;
+    console.log(res)
     this.router.navigate(["books"])
   },
-  error:(err):void =>{
-    console.log(err.error)
-    if(err.error.listValidationErrors){
+  error:(err ):void =>{
+    if(err.error){
       console.log("here")
-    }
+}
     else{
       console.log("there")
+      this.errorMsg.push(err.error)
+
     }
   }
 });
