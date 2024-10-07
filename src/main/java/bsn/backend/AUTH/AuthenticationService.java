@@ -11,6 +11,7 @@ import bsn.backend.USER.User;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +25,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class AuthenticationService {
 
 private final UserRepository userRepository;
@@ -87,10 +89,12 @@ private String confirmationUrl;
     public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
 
        var auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),authenticationRequest.getPassword()));
-    var  claims = new HashMap<String, Object>();
+
+        var  claims = new HashMap<String, Object>();
     var user = ((User)auth.getPrincipal());
     claims.put("fullName",user.getName());
     var token = jwtService.generateToken(claims,user);
+    log.info(token);
     return
             AuthenticationResponse.builder()
                     .token(token)

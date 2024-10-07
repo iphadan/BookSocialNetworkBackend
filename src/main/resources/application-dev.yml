@@ -37,9 +37,9 @@ spring:
     mailing:
       frontend:
         activationUrl: http://localhost:4200/activate-account
-    file:
-      upload:
-        photos-output-path: ./uploads
+      file:
+        upload:
+          photos-output-path: ./uploads
 
       
       

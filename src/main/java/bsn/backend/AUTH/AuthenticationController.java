@@ -15,12 +15,12 @@ public class AuthenticationController {
 
     @PostMapping("register")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<?> registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) throws MessagingException {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationRequest registrationRequest) throws MessagingException {
         System.out.println("here");
         authenticationService.register(registrationRequest);
         return ResponseEntity.accepted().build();
     }
-    @PostMapping("authenticate")
+    @PostMapping(value = "authenticate",produces = "application/json")
     public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
         return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }
